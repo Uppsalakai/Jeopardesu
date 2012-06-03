@@ -1,0 +1,330 @@
+<html>
+<head>
+	<title>Jeopardesu</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" href="style.css" type="text/css" />
+	<script src="jquery.js"></script>
+	<script src="application.js"></script>
+</head>
+<body>
+	<!-- Audio files -->
+	<div id="sounds">
+		<audio id="s1" preload="auto" autobuffer> 
+		  <source src="sound/effect1.mp3" />
+		</audio>
+		<audio id="s2" preload="auto" autobuffer> 
+		  <source src="sound/effect2.mp3" />
+		</audio>
+		<audio id="s3" preload="auto" autobuffer> 
+		  <source src="sound/effect3.mp3" />
+		</audio>
+		<audio id="sWrong" preload="auto" autobuffer> 
+		  <source src="sound/wrong.mp3" />
+		</audio>
+	</div>
+	
+	<div id="testSounds">
+		
+	</div>
+	
+	<div id="finalQuestionCategory">
+		<h1>UPPCON KUNSKAP</h1><!-- Ändra det här plox -->
+	</div>
+	
+	<div id="finalQuestion">
+		<!-- Ändra det här plox -->
+		<h1>VILKET VAR DET MEST UPPSKATTADE EVENEMANGET UNDER UPPCON: 10</h1>
+	</div>
+	
+	<!-- Player pictures -->
+	<div class="playerpic" id="p1pic"></div>
+	<div class="playerpic" id="p2pic"></div>
+	<div class="playerpic" id="p3pic"></div>
+	
+	<h2 id="wrong">FEL</h2>
+	<h2 id="right">RÄTT</h2>
+	<audio id="sBidup" preload="auto" autobuffer><source src="sound/bidup.mp3" /></audio>
+	
+	<div id="highscore">
+		<div class="p1"><p style="font-size:40px;">Tantan</p><span>000</span></div>
+		<div class="p2"><p style="font-size:40px;">Fluff</p><span>000</span></div>
+		<div class="p3"><p style="font-size:40px;">Antilla</p><span>000</span></div>
+	</div>
+	
+	<!-- Categories -->
+	<div id="categories">
+		<h1>HÄR ÄR EN KATEGORI</h1>
+	</div>
+
+	<!-- Question in focus -->
+	<div class="overlay">
+		<div class="bubble">
+			<div class="wrapper">
+				<div class="points"><span>xxx</span></div>
+				<p></p>
+				<div class="endline"></div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="round1">
+		<div class="category c1">
+			<h1>MANLIGA MÄN & MAGISKA FLICKOR</h1>
+			<div class="one">
+				<span>100</span>
+				<div class="q">En liten tjej med jättelånga flätor</div>
+			</div>
+			<div class="two">
+				<span>200</span>
+				<div class="q">En passionerad muskelalkemist</div>
+			</div>
+			<div class="three">
+				<span>300</span>
+				<div class="q">Denna lilla flicka får sina magiska krafter från en fisk</div>
+			</div>
+			<div class="four">
+				<span>400</span>
+				<div class="q">Denna karaktär kan tolkas som en manlig man och en magisk flicka</div>
+			</div>
+			<div class="five">
+				<span>500</span>
+				<div class="q">Mannen med björnnäven</div>
+			</div>	
+		</div>
+		
+		<div class="category c2">
+			<h1>RÖSTSKÅDESPELARE</h1>
+			<div class="one">
+				<span>100</span>
+				<div class="q">Amerikansk röstskådespleare till Edward Elric från Full Metal Alchemist</div>
+			</div>
+			<div class="two">
+				<span>200</span>
+				<div class="q">Amerikansk röstskådespleare till Tamaki från “Ouran High School Host Club”</div>				
+			</div>
+			<div class="three">
+				<span>300</span>
+				<div class="q">Känd amerikansk röstskådespelare som besökte NärCon 2011</div>
+			</div>
+			<div class="four">
+				<span>400</span>
+				<div class="q">Amerikansk röstskådespleare till bikaraktären Pony i “Fullmetal Panic Fumoffu”</div>			
+			</div>
+			<div class="five">
+				<span>500</span>
+				<div class="q">Röstskådspelerare till bl.a. Akama, John, Moss & Sniper i Silver Fang</div>
+			</div>	
+		</div>
+		
+		<div class="category c3">
+			<h1>GISSA COSPLAYEN</h1>
+			<div class="one">
+				<span>100</span>
+				<div class="q"><IMG SRC="picq/pic1.jpg"></div>
+			</div>
+			<div class="two">
+				<span>200</span>
+				<div class="q"><IMG SRC="picq/pic2.jpg"></div>
+			</div>
+			<div class="three">
+				<span>300</span>
+				<div class="q"><IMG SRC="picq/pic3.jpg"></div>
+			</div>
+			<div class="four">
+				<span>400</span>
+				<div class="q"><IMG SRC="picq/pic4.jpg"></div>
+			</div>
+			<div class="five">
+				<span>500</span>
+				<div class="q"><IMG SRC="picq/pic5.jpg"></div>
+			</div>	
+		</div>
+	
+		<div class="category c4">
+			<h1>KÄNDA MEMES</h1>
+			<div class="one">
+				<span>100</span>
+				<div class="q">Äventyrslusten ungdom avslutar sin karriär efter svår skada i benet</div>
+			</div>
+			<div class="two">
+				<span>200</span>
+				<div class="q">Äldre dam beskriver vem som är monark i olika tropiska zoner?</div>
+			</div>
+			<div class="three">
+				<span>300</span>
+				<div class="q">Plats i södra grekland som omnämns i Frank Miller serie?</div>
+			</div>
+			<div class="four">
+				<span>400</span>
+				<div class="q">Charlie Smidts husdjur med oanade musikaliska talanger</div>
+			</div>
+			<div class="five">
+				<span>500</span>
+				<div class="q">Jag gillar sköldpaddor</div>
+			</div>	
+		</div>
+	
+		<div class="category c5">
+			<h1>ROBOTAR</h1>
+			<div class="one">
+				<span>100</span>
+				<div class="q">Klassisk vit, blå och röd robot som finns som fullskalig staty i Odaiba</div>
+			</div>
+			<div class="two">
+				<span>200</span>
+				<div class="q">Mecha med tre olika former; Robotform, Planform och Mittimellanform</div>
+			</div>
+			<div class="three">
+				<span>300</span>
+				<div class="q">Namnet på både huvudpersonen och serien i den absolut första mangaserien någonsin</div>
+			</div>
+			<div class="four">
+				<span>400</span>
+				<div class="q">Energifylld portabel robot med fäbless för morgongymnastik</div>
+			</div>
+			<div class="five">
+				<span>500</span>
+				<div class="q">Skruvförsedd robot som bara önskar att få gå i skolan som en vanlig flicka.</div>
+			</div>	
+		</div>
+	</div>
+	<!-- End of round 1 -->
+
+
+	
+	<!-- Start of round 2 -->
+	<div id="round2">
+		<div class="category c1">
+			<h1>ÖVERSATT ANIMÉ</h1>
+			<div class="one">
+				<span>200</span>
+				<div class="q">Helvetes-sjunga</div>
+			</div>
+			<div class="two">
+				<span>400</span>
+				<div class="q">Vi vet fortfarande inte namnet på blomman vi såg den där dagen</div>
+			</div>
+			<div class="three">
+				<span>600</span>
+				<div class="q">Virvelorkan-krönikan</div>
+			</div>
+			<div class="four">
+				<span>800</span>
+				<div class="q">Capsicum Annuum</div>
+			</div>
+			<div class="five">
+				<span>1000</span>
+				<div class="q">Ljusfartselguden Albegas</div>
+			</div>	
+		</div>
+		
+		<div class="category c2">
+			<h1>ANIMÈINTROS</h1>
+			<div class="one sound">
+				<span>200</span>
+				<div class="q">Ljudfråga</div>
+				<audio preload="auto" autobuffer><source src="sound/q1.mp3" /></audio>
+			</div>
+			<div class="two sound">
+				<span>400</span>
+				<div class="q">Ljudfråga</div>
+				<audio preload="auto" autobuffer><source src="sound/q2.mp3" /></audio>				
+			</div>
+			<div class="three sound">
+				<span>600</span>
+				<div class="q">Ljudfråga</div>
+				<audio preload="auto" autobuffer><source src="sound/q3.mp3" /></audio>
+			</div>
+			<div class="four sound">
+				<span>800</span>
+				<div class="q">Ljudfråga</div>
+				<audio preload="auto" autobuffer><source src="sound/q4.mp3" /></audio>				
+			</div>
+			<div class="five sound">
+				<span>1000</span>
+				<div class="q">Ljudfråga</div>
+				<audio preload="auto" autobuffer><source src="sound/q5.mp3" /></audio>
+			</div>	
+		</div>
+		
+		<div class="category c3">
+			<h1>VAD HÄNDER EFTER?</h1>
+				<!-- VIDEOKATEGORI -->
+			<div class="one">
+				<span>200</span>
+				<div class="q">Det görs Wasabi av</div>
+			</div>
+			<div class="two">
+				<span>400</span>
+				<div class="q">Så heter den tofusushi som brukar associeras med rävar</div>
+			</div>
+			<div class="three">
+				<span>600</span>
+				<div class="q">Så kallas ingefäran man oftast får vid sidan av</div>
+			</div>
+			<div class="four">
+				<span>800</span>
+				<div class="q">Så kallas sushi formad som en "rulle" men skärd i bitar med ett finare namn</div>
+			</div>
+			<div class="five">
+				<span>1000</span>
+				<div class="q">Så kallas den grundsmak man kan uppleva av bland annat det populära sushi-tillbehöret soja</div>
+			</div>	
+		</div>
+	
+		<div class="category c4">
+			<h1>SIDEKICKS</h1>
+			<div class="one">
+				<span>200</span>
+				<div class="q">Entrepenörslagd iller vill att du ska skriva på skumt kontrakt för att bli magisk flicka</div>
+			</div>
+			<div class="two">
+				<span>400</span>
+				<div class="q">Pålitig rymd-corgi med hackingkunskaper</div>
+			</div>
+			<div class="three">
+				<span>600</span>
+				<div class="q">Linslus till katt som figurerar i samtliga Trigun-avsnitt.</div>
+			</div>
+			<div class="four">
+				<span>800</span>
+				<div class="q">Magic Knight Rayearth-sidekick med namn efter en av CLAMP-skaparna</div>
+			</div>
+			<div class="five">
+				<span>1000</span>
+				<div class="q">Perverterad Pacman som styr över ninjaklan</div>
+			</div>	
+		</div>
+	
+		<div class="category c5">
+			<h1>ANIMÈDANSER</h1>
+				<div class="one sound">
+					<span>200</span>
+					<div class="q">Ljudfråga</div>
+					<audio preload="auto" autobuffer><source src="sound/q6.mp3" /></audio>
+				</div>
+				<div class="two sound">
+					<span>400</span>
+					<div class="q">Ljudfråga</div>
+					<audio preload="auto" autobuffer><source src="sound/q7.mp3" /></audio>				
+				</div>
+				<div class="three sound">
+					<span>600</span>
+					<div class="q">Ljudfråga</div>
+					<audio preload="auto" autobuffer><source src="sound/q8.mp3" /></audio>
+				</div>
+				<div class="four sound">
+					<span>800</span>
+					<div class="q">Ljudfråga</div>
+					<audio preload="auto" autobuffer><source src="sound/q9.mp3" /></audio>				
+				</div>
+				<div class="five sound">
+					<span>10 00</span>
+					<div class="q">Ljudfråga</div>
+					<audio preload="auto" autobuffer><source src="sound/q10.mp3" /></audio>
+				</div>	
+			</div>
+
+	
+</body>
+</html>
