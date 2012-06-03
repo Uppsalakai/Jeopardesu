@@ -108,7 +108,17 @@ $(function() {
 			$("#categories h1").fadeOut('fast', function(e){
 				currentCategoryHeader++;
 				if(currentCategoryHeader >=5) {
-					$("#categories").fadeOut();
+					$('#round1 .category > div').hide();
+					var delay = 80;
+                    $("#categories").fadeOut(300, function(){
+                        for (var i=0; i < 5; i++) {
+                            $('#round1 .category:eq(0) > div:eq('+i+')').delay(delay*i).fadeIn();
+                            $('#round1 .category:eq(1) > div:eq('+i+')').delay((delay*5)+delay*i).fadeIn();
+                            $('#round1 .category:eq(2) > div:eq('+i+')').delay((delay*10)+delay*i).fadeIn();
+                            $('#round1 .category:eq(3) > div:eq('+i+')').delay((delay*15)+delay*i).fadeIn();
+                            $('#round1 .category:eq(4) > div:eq('+i+')').delay((delay*20)+delay*i).fadeIn();
+                        };
+                    });
 					return false;
 				}
 				$("#categories h1").html(categoryHeadersRound1[currentCategoryHeader]).fadeIn('fast');
@@ -120,7 +130,19 @@ $(function() {
 			$("#categories h1").fadeOut('fast', function(e){
 				currentCategoryHeader++;
 				if(currentCategoryHeader >=5) {
-					$("#categories").fadeOut();
+					$('#round2 .category > div').hide();
+					var delay = 80;
+                    $("#categories").fadeOut(300, function(){
+                        for (var i=0; i < 5; i++) {
+                            $('#round2 .category:eq(0) > div:eq('+i+')').delay(delay*i).fadeIn();
+                            $('#round2 .category:eq(1) > div:eq('+i+')').delay((delay*5)+delay*i).fadeIn();
+                            $('#round2 .category:eq(2) > div:eq('+i+')').delay((delay*10)+delay*i).fadeIn();
+                            $('#round2 .category:eq(3) > div:eq('+i+')').delay((delay*15)+delay*i).fadeIn();
+                            $('#round2 .category:eq(4) > div:eq('+i+')').delay((delay*20)+delay*i).fadeIn();
+                        };
+                    });
+					
+					
 					return false;
 				}
 				$("#categories h1").html(categoryHeadersRound2[currentCategoryHeader]).fadeIn('fast');
