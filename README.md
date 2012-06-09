@@ -33,6 +33,7 @@ En Battsu snurra (Vad va?)
 Filmer + Ljudfrågor
 Specialfråga: Satsa poäng!
 Centrera frågor vertikalt i bubblor
+Spara game state med local storage
 Skapa question-objekt utifrån spelplan
 Koppla frågor man klickar på till frågor i question-objekten
 Lägg in frågor som JSON-filer istället
