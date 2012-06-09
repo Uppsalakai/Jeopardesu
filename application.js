@@ -15,8 +15,6 @@ $(function() {
 	
 	// Old set-up
 	var round = 1,
-		points,
-		question,
 		questionAvailable = 0,
 		playerIsAnswering = 0,
 		playerThatIsAnswering,
@@ -26,7 +24,7 @@ $(function() {
 	
 	$(".overlay").hide();
 		
-	// Collect headers and questions
+	// Collect headers and questions and create objects
 	$(".round").each(function(index){
 		$(this).find(".category").each(function(e){
 			var categoryTitle = $(this).find("h1").html(),
@@ -53,19 +51,21 @@ $(function() {
 		if($(this).data("hasBeenDisplayed") == 1) return false;
 		$(this).data("hasBeenDisplayed", 1);
 		questionCount++;
-		questionAvailable = 1;
-		
-		// Which bubble was clicked?
-		$clickedBubble = $(this),
-			points = parseInt($(this).find("span").html()),
-			question = $(this).find(".q").html();
-		
+		questionAvailable = 1; // Replace with: if(JP.currentQuestion.shown == false) or something similar
+
+		var questionIndex = $(this).index()-1,
+			categoryIndex = $(this).parent().index(),
+			boardIndex = $(this).parent().parent().index();
+		JP.currentQuestion = JP.boards[boardIndex].categories[categoryIndex].questions[questionIndex];
+				
 		// Set data to be displayed
 		$overlay = $(".overlay");
-		$overlay.find("p").html(question)
-			.end().find(".points span").html(points);
+		$overlay.find("p").html(JP.currentQuestion.title)
+			.end().find(".points span").html(JP.currentQuestion.points);
 			
 		// TO-DO: Animate bubble - flip and expand
+		// Remove the blob that was clicked
+		$(this).animate({opacity: 0.0}, 100);
 		
 		// Play sound if sound bubble
 		if($(this).hasClass("sound")){
@@ -210,14 +210,14 @@ $(function() {
 			if(e.keyCode == 82) {
 				// Correct!							
 				$("#right").show();
-				JP.players[playerThatIsAnswering-1].score += points;
+				JP.players[playerThatIsAnswering-1].score += JP.currentQuestion.points;
 				setTimeout(removeOverlay,600);
 				// Reset the UI. Totally fucked up function: redo
 				reset();
 				
 			} else {
 				// Wrong		
-				JP.players[playerThatIsAnswering-1].score -= points;
+				JP.players[playerThatIsAnswering-1].score -= JP.currentQuestion.points;
 				
 				$("#wrong").show();
 				// Remove overlay after 600 ms
@@ -239,14 +239,10 @@ $(function() {
 	});
 	
 	// TODO: Rename to newRound()
-	function reset(){
-		// Remove the blob that was clicked
-		$clickedBubble.animate({opacity: 0.0}, 100);
-		
+	function reset(){		
 		// Reset all cool stuff
 		JP.answersAccepted = false,
 		questionAvailable = 0,
-		points = 0,
 		playerIsAnswering = 0;
 		
 		JP.playersThatHaveAnswered = [];

@@ -3,6 +3,7 @@ function Game() {
 	this.boards = [];
 	this.answersAccepted = false;
 	this.playersThatHaveAnswered = [];
+	this.currentQuestion;
 }
 
 Game.prototype.playerHasAnswered = function(player) {
