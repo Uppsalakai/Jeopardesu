@@ -26,18 +26,29 @@ $(function() {
 	
 	$(".overlay").hide();
 		
-	// Collect headers
+	// Collect headers and questions
 	$(".round").each(function(index){
 		$(this).find(".category").each(function(e){
 			var categoryTitle = $(this).find("h1").html(),
 				newCategory = new Category();
 			newCategory.title = categoryTitle;
 			
+			// Find questions in category and add to category
+			$(this).find(".q").each(function(questionIndex){
+				var questionHTML = $(this).html(),
+					questionPoints = parseInt($(this).parent().find("span").html()),
+					newQuestion = new Question();
+				newQuestion.title = questionHTML;
+				newQuestion.points = questionPoints;
+				newCategory.questions.push(newQuestion);	
+			});
+			
+			// Add category to board			
 			JP.boards[index].categories.push(newCategory);
 		});
 	});
 	
-	// Bring up question
+	// A question is clicked: Show it
 	$(".category div").click(function(e){
 		if($(this).data("hasBeenDisplayed") == 1) return false;
 		$(this).data("hasBeenDisplayed", 1);

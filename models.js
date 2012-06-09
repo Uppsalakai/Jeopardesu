@@ -35,6 +35,7 @@ function Category() {
 function Question() {
 	this.title = "Undefined question";
 	this.points = 0;
+	this.shown = false;
 }
 
 
