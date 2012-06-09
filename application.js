@@ -1,4 +1,5 @@
 $(function() {
+	// Initialize
 	var JP = new Game();
 	
 	var player1 = new Player(),
@@ -12,40 +13,29 @@ $(function() {
 	JP.players.push(player1, player2, player3);
 	JP.boards.push(board1, board2);
 	
-	// TODO: Remove this completely
-	// Set-up
+	// Old set-up
 	var round = 1,
 		points,
 		question,
 		questionAvailable = 0,
 		playerIsAnswering = 0,
 		playerThatIsAnswering,
-		questionCount = 0
+		questionCount = 0,
+		currentCategoryHeader = 0,
 		isTestingSounds = 1;
 	
 	$(".overlay").hide();
-	
-	// Show categories
-	
-	// TODO: Merge these two functions!
+		
 	// Collect headers
-	var currentCategoryHeader = 0;
-	$("#round1 .category").each(function(e){
-		var categoryHeader = $(this).find("h1").html();
-
-		var aCategory = new Category();
-		aCategory.title = categoryHeader;
-		JP.boards[0].categories.push(aCategory);
+	$(".round").each(function(index){
+		$(this).find(".category").each(function(e){
+			var categoryTitle = $(this).find("h1").html(),
+				newCategory = new Category();
+			newCategory.title = categoryTitle;
+			
+			JP.boards[index].categories.push(newCategory);
+		});
 	});
-		
-	$("#round2 .category").each(function(e){
-		var categoryHeader = $(this).find("h1").html();
-		
-		var aCategory = new Category();
-		aCategory.title = categoryHeader;
-		JP.boards[1].categories.push(aCategory);
-	});
-
 	
 	// Bring up question
 	$(".category div").click(function(e){
