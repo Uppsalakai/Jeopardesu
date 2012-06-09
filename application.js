@@ -1,47 +1,51 @@
 $(function() {
+	var JP = new Game();
+	
+	var player1 = new Player(),
+		player2 = new Player(),
+		player3 = new Player();
+	
+	// TODO: set dynamically after counting boards in HTML	
+	var board1 = new Board(),
+		board2 = new Board();
+	
+	JP.players.push(player1, player2, player3);
+	JP.boards.push(board1, board2);
+	
+	// TODO: Remove this completely
 	// Set-up
 	var round = 1,
-		bubbleNumber,
 		points,
 		question,
-		playersCanAnswer = 0,
 		questionAvailable = 0,
 		playerIsAnswering = 0,
 		playerThatIsAnswering,
 		questionCount = 0
 		isTestingSounds = 1;
-		
-	var highscore = new Array(3);
-		highscore[0] = 0,
-		highscore[1] = 0,
-		highscore[2] = 0;
-	
-	var playerHasAnswered = new Array(3);
-		playerHasAnswered[0] = 0,
-		playerHasAnswered[1] = 0,
-		playerHasAnswered[2] = 0;
 	
 	$(".overlay").hide();
 	
 	// Show categories
 	
+	// TODO: Merge these two functions!
 	// Collect headers
-	var categoryHeadersRound1 = new Array(),
-		categoryHeadersRound2 = new Array(),
-		currentCategoryHeader = 0;
+	var currentCategoryHeader = 0;
 	$("#round1 .category").each(function(e){
 		var categoryHeader = $(this).find("h1").html();
-		categoryHeadersRound1.push(categoryHeader);
+
+		var aCategory = new Category();
+		aCategory.title = categoryHeader;
+		JP.boards[0].categories.push(aCategory);
 	});
-	
+		
 	$("#round2 .category").each(function(e){
 		var categoryHeader = $(this).find("h1").html();
-		categoryHeadersRound2.push(categoryHeader);
+		
+		var aCategory = new Category();
+		aCategory.title = categoryHeader;
+		JP.boards[1].categories.push(aCategory);
 	});
 
-	
-	// Set first text
-	$("#categories h1").html(categoryHeadersRound1[0]);
 	
 	// Bring up question
 	$(".category div").click(function(e){
@@ -60,7 +64,7 @@ $(function() {
 		$overlay.find("p").html(question)
 			.end().find(".points span").html(points);
 			
-		// TO-DO: Animate bubble
+		// TO-DO: Animate bubble - flip and expand
 		
 		// Play sound if sound bubble
 		if($(this).hasClass("sound")){
@@ -75,9 +79,13 @@ $(function() {
 	$("body").keyup(function(e){
 		if(e.keyCode == "13" && questionAvailable) {
 			// OK to answer!
-			playersCanAnswer = 1;
+			JP.answersAccepted = true;
 		}
 	});
+	
+	// TODO: Remove this and set in intro function
+	// Set first text for intro
+	$("#categories h1").html(JP.boards[0].categories[0].title);
 	
 	// Keyboard events
 	$("body").keyup(function(e){
@@ -103,6 +111,8 @@ $(function() {
 	    	}
 		}
 		
+		// TODO: Merge these two functions!
+		// Round intro!
 		// Change category on key right
 		if(e.keyCode == 39 && round == 1){
 			$("#categories h1").fadeOut('fast', function(e){
@@ -121,10 +131,11 @@ $(function() {
                     });
 					return false;
 				}
-				$("#categories h1").html(categoryHeadersRound1[currentCategoryHeader]).fadeIn('fast');
+				$("#categories h1").html(JP.boards[0].categories[currentCategoryHeader].title).fadeIn('fast');
 			});
 		}
 		
+		// Round intro again!
 		// Change category (for round 2) on key right
 		if(e.keyCode == 39 && round == 2){
 			$("#categories h1").fadeOut('fast', function(e){
@@ -145,7 +156,7 @@ $(function() {
 					
 					return false;
 				}
-				$("#categories h1").html(categoryHeadersRound2[currentCategoryHeader]).fadeIn('fast');
+				$("#categories h1").html(JP.boards[1].categories[currentCategoryHeader].title).fadeIn('fast');
 			});
 		}
 		
@@ -158,9 +169,10 @@ $(function() {
 		// A player tries to answer
 		if((e.keyCode >= 97 && e.keyCode <= 99) || (e.keyCode >= 49 && e.keyCode <= 51)){
 			// Stop if players can't answer or if a player is answering
-			if(!playersCanAnswer || playerIsAnswering) return false;
+			if(!JP.answersAccepted || playerIsAnswering) return false;
 			
 			// set playerThatIsAnswering to 1,2 or 3
+			// TODO: Change this to 0, 1 or 2 -everywhere-
 			if(e.keyCode < 60) { 
 				playerThatIsAnswering = e.keyCode - 48;	
 			} else {
@@ -168,10 +180,13 @@ $(function() {
 			}
 			
 			// If player has already answered, return false
-			if(playerHasAnswered[playerThatIsAnswering-1]) return false;
-			playerHasAnswered[playerThatIsAnswering-1] = 1;
+			if(JP.playerHasAnswered(JP.players[playerThatIsAnswering-1])) return false;
+			// Else, add to answered list as that players answers
+			JP.playersThatHaveAnswered.push(JP.players[playerThatIsAnswering-1]);
 			
 			pauseAllSounds();
+			
+			// TODO: Replace the two functions below with one function: "presentPlayer(player)"
 			// Play player sound
 			$("#s" + playerThatIsAnswering)[0].play();
 			
@@ -191,21 +206,21 @@ $(function() {
 			}
 			if(!playerIsAnswering) return false;
 			// Right?
-			if(e.keyCode == 82) {							
+			if(e.keyCode == 82) {
+				// Correct!							
 				$("#right").show();
-				//alert("RÄTT");
-				givePointsToPlayer(points, playerThatIsAnswering);
+				JP.players[playerThatIsAnswering-1].score += points;
 				setTimeout(removeOverlay,600);
+				// Reset the UI. Totally fucked up function: redo
+				reset();
 				
 			} else {
 				// Wrong		
-				takePointsFromPlayer(points, playerThatIsAnswering);
+				JP.players[playerThatIsAnswering-1].score -= points;
 				
-				// Show "FEL"
 				$("#wrong").show();
 				// Remove overlay after 600 ms
 				setTimeout(removeOverlay,600);
-				//alert("FEL");
 			}
 		}	
 		
@@ -222,40 +237,18 @@ $(function() {
 		
 	});
 	
-	function givePointsToPlayer(points, playerNumber){
-		highscore[playerNumber-1] += points;
-		updateScoreBoard();
-	}
-	
-	function takePointsFromPlayer(points, playerNumber){
-		highscore[playerNumber-1] -= points;
-	}
-	
-	function updateScoreBoard(){
-		// Update score board
-		for(var i = 0; i < 3; i++){
-			var playerHighscore = highscore[i] == 0 ? "000" : highscore[i];
-			//alert(i+1 + ": " + playerHighscore);
-			$("#highscore .p" + parseInt(i+1) + " span").html(playerHighscore);
-		}
-				
-		// Assumes that if the scoreboard is updated the current round is over
-		reset();
-	}
-	
+	// TODO: Rename to newRound()
 	function reset(){
 		// Remove the blob that was clicked
 		$clickedBubble.animate({opacity: 0.0}, 100);
 		
 		// Reset all cool stuff
-		playersCanAnswer = 0,
+		JP.answersAccepted = false,
 		questionAvailable = 0,
 		points = 0,
 		playerIsAnswering = 0;
 		
-		playerHasAnswered[0] = 0,
-		playerHasAnswered[1] = 0,
-		playerHasAnswered[2] = 0;
+		JP.playersThatHaveAnswered = [];
 		
 		// Reset UI
 		$(".overlay").fadeOut();
@@ -271,8 +264,7 @@ $(function() {
 	}
 	
 	function allPlayersWereWrong(){
-		$("#sWrong")[0].play();
-		updateScoreBoard();
+		// $("#sWrong")[0].play(); – Sound is too annoying. Change to a new one
 		reset();
 	}
 	
@@ -282,9 +274,7 @@ $(function() {
 		$("#right").hide();
 		
 		// Were all players wrong?
-		if(playerHasAnswered[0] == 1 && playerHasAnswered[1] && playerHasAnswered[2]){
-			allPlayersWereWrong();
-		}
+		if(JP.playersThatHaveAnswered.length >= JP.players.length) allPlayersWereWrong();
 		
 		// Let players answer again
 		playerIsAnswering = 0;
@@ -299,7 +289,7 @@ $(function() {
 	
 	function showRound2(){
 		currentCategoryHeader = 0;
-		$("#categories h1").html(categoryHeadersRound2[0]);
+		$("#categories h1").html(JP.boards[1].categories[0].title);
 		$("#categories h1").fadeIn();
 		$("#categories").fadeIn();
 		$("#round2").fadeIn();
@@ -314,6 +304,13 @@ $(function() {
 		if($("#highscore").is(":visible")){
 			$("#highscore").fadeOut();
 		} else {
+			// If highscore will be shown, update the scores
+			for(var i = 0; i < 3; i++){
+				var playerHighscore = JP.players[i].score == 0 ? "000" : JP.players[i].score;
+				//alert(i+1 + ": " + playerHighscore);
+				$("#highscore .p" + parseInt(i+1) + " span").html(playerHighscore);
+			}
+			
 			$("#highscore").fadeIn();
 		}
 	}
