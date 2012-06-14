@@ -224,7 +224,7 @@ h1 {
 	display: none;
 }
 
-#p1pic {
+/*#p1pic {
 	background: url(img/nyancat.png) no-repeat;
 }
 
@@ -234,7 +234,7 @@ h1 {
 
 #p3pic {
 	background: url(img/popipo.jpg) no-repeat;
-}
+}*/
 
 #right, #wrong {
 	display: none;
