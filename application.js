@@ -69,12 +69,16 @@ $(function() {
 		
 		// Play sound if sound bubble
 		if($(this).hasClass("sound")){
-			// Play sound
 			$(this).find("audio")[0].play();
+		} else if ($(this).hasClass("video")) { // If not, play if it is a video
+			// Fade in background, and once that is finished, show and play the movie
+			$(".videoOverlay").fadeIn('fast', function(){
+				$(".videoOverlay video").eq(questionIndex).fadeIn('fast')[0].play();
+			});
 		}
 		
 		// Fade in overlay
-		$(".overlay").fadeIn();
+		$(this).hasClass("video") ? 0 : $(".overlay").fadeIn();
 	});
 	
 	$("body").keyup(function(e){
@@ -186,6 +190,8 @@ $(function() {
 			JP.playersThatHaveAnswered.push(JP.players[playerThatIsAnswering-1]);
 			
 			pauseAllSounds();
+			// Is video playing? Pause it!
+			$(".videoOverlay video:visible") ? $(".videoOverlay video:visible")[0].pause() : console.log("No video is playing");
 			
 			// TODO: Replace the two functions below with one function: "presentPlayer(player)"
 			// Play player sound
@@ -213,7 +219,9 @@ $(function() {
 				JP.players[playerThatIsAnswering-1].score += JP.currentQuestion.points;
 				setTimeout(removeOverlay,600);
 				// Reset the UI. Totally fucked up function: redo
-				reset();
+				
+				// If right, and video queston - start playing the video again
+				$(".videoOverlay video:visible") ? $(".videoOverlay video:visible")[0].play() : reset();
 				
 			} else {
 				// Wrong		
@@ -235,6 +243,10 @@ $(function() {
 			toggleHighScores();
 		}
 		
+		// Spacebar. Ifall en video visas, pausa / spela den
+		if (e.keyCode == 32) {
+			toggleVisibleVideoPlayState();
+		}
 		
 	});
 	
@@ -327,6 +339,24 @@ $(function() {
 	
 	function showLastQuestion(){
 		$("#finalQuestion").fadeIn();	
+	}
+	
+	function toggleVisibleVideoPlayState(){
+		$(".videoOverlay video:visible")[0].paused ? $(".videoOverlay video:visible")[0].play() : $(".videoOverlay video:visible")[0].pause();
+	}
+	
+	// When a video finishes, hide all shit and reset
+	$(".videoOverlay video").each(function(e){
+		var video = $(this)[0];
+		video.addEventListener('ended',hideVideoAndReset,false);
+	});
+	
+	function hideVideoAndReset() {
+		if($(".videoOverlay video:visible")) {
+			$(".videoOverlay video:visible").hide();
+			$(".videoOverlay").fadeOut('fast');
+			reset();
+		}
 	}
 
 });

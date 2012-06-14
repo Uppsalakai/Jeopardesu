@@ -40,3 +40,4 @@ Lägg in frågor som JSON-filer istället
 - Gör JSON-filer för frågorna
 - Parsea JSON och gör objekt
 - Outputta HTML
+Lägg till så att ESC kan stänga en bubbla och gå tillbaka
