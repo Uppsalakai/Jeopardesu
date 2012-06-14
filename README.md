@@ -27,19 +27,16 @@ H = Tar fram SCOREBOARD
 
 Todo:
 
-Bilder i "helskärmsläge"
-Finare fonter i Google Chrome
 En Battsu snurra (Vad va?)
-Filmer + Ljudfrågor
-Specialfråga: Satsa poäng!
 Centrera frågor vertikalt i bubblor
+Animera frågebubblor så de snurrar i 3D SWOSHAR upp som i riktig Jepoerdy
 Spara game state med local storage
-Skapa question-objekt utifrån spelplan
-Koppla frågor man klickar på till frågor i question-objekten
+Lägg till så att ESC kan stänga en bubbla och gå tillbaka
+Gör så att man kan svara såfort en video börjar spelas
+Gör så att efter 2 sekunder kan man ALLTID svara
+Specialfråga: Satsa poäng!
+Finare fonter i Google Chrome
 Lägg in frågor som JSON-filer istället
 - Gör JSON-filer för frågorna
 - Parsea JSON och gör objekt
 - Outputta HTML
-Lägg till så att ESC kan stänga en bubbla och gå tillbaka
-Gör så att man kan svara såfort en video börjar spelas
-Gör så att efter 2 sekunder kan man ALLTID svara
