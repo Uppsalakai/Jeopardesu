@@ -191,7 +191,7 @@ $(function() {
 			
 			pauseAllSounds();
 			// Is video playing? Pause it!
-			$(".videoOverlay video:visible") ? $(".videoOverlay video:visible")[0].pause() : console.log("No video is playing");
+			$(".videoOverlay video:visible")[0] ? $(".videoOverlay video:visible")[0].pause() : console.log("No video is playing");
 			
 			// TODO: Replace the two functions below with one function: "presentPlayer(player)"
 			// Play player sound
@@ -221,7 +221,7 @@ $(function() {
 				// Reset the UI. Totally fucked up function: redo
 				
 				// If right, and video queston - start playing the video again
-				$(".videoOverlay video:visible") ? $(".videoOverlay video:visible")[0].play() : reset();
+				$(".videoOverlay video:visible")[0] ? $(".videoOverlay video:visible")[0].play() : reset();
 				
 			} else {
 				// Wrong		

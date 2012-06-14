@@ -41,3 +41,5 @@ Lägg in frågor som JSON-filer istället
 - Parsea JSON och gör objekt
 - Outputta HTML
 Lägg till så att ESC kan stänga en bubbla och gå tillbaka
+Gör så att man kan svara såfort en video börjar spelas
+Gör så att efter 2 sekunder kan man ALLTID svara
