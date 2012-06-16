@@ -268,6 +268,18 @@ $(function() {
 			toggleVisibleVideoPlayState();
 		}
 		
+		// Man trycker på "P". Spela det-kukar-ur-ljudet
+		if (e.keyCode == 80) {
+			var theSound = $("#sKukarUr")[0];
+			if(theSound.paused) {
+				theSound.play();
+			} else {
+				// If is playing, pause instead
+				theSound.pause();
+				theSound.currentTime = 0
+			}
+		}
+		
 	});
 	
 	// TODO: Rename to newRound()

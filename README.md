@@ -27,7 +27,6 @@ H = Tar fram SCOREBOARD
 
 Todo:
 
-Börja spela det där ljudet när man trycker på "P"
 Lägg in ljudfrågor
 Ifall en ljudfråga svaras rätt på, spela upp ljudet
 Animera frågebubblor så de snurrar i 3D SWOSHAR upp som i riktig Jepoerdy
