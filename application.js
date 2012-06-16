@@ -57,6 +57,7 @@ $(function() {
 			categoryIndex = $(this).parent().index(),
 			boardIndex = $(this).parent().parent().index();
 		JP.currentQuestion = JP.boards[boardIndex].categories[categoryIndex].questions[questionIndex];
+		JP.currentQuestionElement = $(this);
 				
 		// Set data to be displayed
 		$overlay = $(".overlay");
@@ -68,11 +69,7 @@ $(function() {
 		$(this).animate({opacity: 0.0}, 100);
 		
 		// Play sound if sound bubble
-		if($(this).hasClass("sound")){
-			$(this).find("audio")[0].play();
-			// Set OK to answer!
-			JP.answersAccepted = true;
-		} else if ($(this).hasClass("video")) { // If not, play if it is a video
+		if ($(this).hasClass("video")) { // If not, play if it is a video
 			// Fade in background, and once that is finished, show and play the movie
 			$(".videoOverlay").fadeIn('fast', function(){
 				$(".videoOverlay video").eq(questionIndex).fadeIn('fast')[0].play();
@@ -80,9 +77,11 @@ $(function() {
 			// Set OK to answer! 
 			JP.answersAccepted = true;
 		}
+		setTimeout(setOKToAnswer,1500);
 		
 		// Fade in overlay
 		$(this).hasClass("video") ? 0 : $(".overlay").fadeIn();
+		
 	});
 	
 	$("body").keyup(function(e){
@@ -228,7 +227,14 @@ $(function() {
 				//$("#right").show();
 				JP.players[playerThatIsAnswering-1].score += JP.currentQuestion.points;
 				removeOverlay();
-				// Reset the UI. Totally fucked up function: redo
+				
+				// Play sound
+				if(JP.currentQuestionElement.hasClass("sound")){
+					JP.currentQuestionElement.find("audio")[0].play();
+					// Set OK to answer!
+					JP.answersAccepted = true;
+				}
+
 				
 				// If right, and video queston - start playing the video again
 				//$(".videoOverlay video:visible")[0] ? $(".videoOverlay video:visible")[0].play() : reset();
@@ -239,7 +245,7 @@ $(function() {
 					// If not videoOverlay, show points and count up
 					showHighScoreAndAnimate(playerThatIsAnswering);
 				}
-				
+								
 			} else {
 				// Wrong		
 				JP.players[playerThatIsAnswering-1].score -= JP.currentQuestion.points;
@@ -265,7 +271,11 @@ $(function() {
 		
 		// Spacebar. Ifall en video visas, pausa / spela den
 		if (e.keyCode == 32) {
-			toggleVisibleVideoPlayState();
+			if(JP.currentQuestionElement.hasClass("sound")){
+				JP.currentQuestionElement.find("audio")[0].pause();
+			} else if (JP.currentQuestionElement.hasClass("video")) {
+				toggleVisibleVideoPlayState();
+			}
 		}
 		
 		// Man trycker på "P". Spela det-kukar-ur-ljudet
@@ -395,6 +405,7 @@ $(function() {
 	function setOKToAnswer() {
 		if (questionAvailable) {
 			JP.answersAccepted = true;
+			console.log("Now OK to answer");
 		}
 	}
 	
@@ -416,9 +427,6 @@ $(function() {
 
 		});
 			
-		
-		//$("#highscore .p" + playerThatAnswered + " span").fadeOut('fast');
-
 	}
 
 });

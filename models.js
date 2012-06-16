@@ -4,6 +4,7 @@ function Game() {
 	this.answersAccepted = false;
 	this.playersThatHaveAnswered = [];
 	this.currentQuestion;
+	this.currentQuestionElement;
 }
 
 Game.prototype.playerHasAnswered = function(player) {
