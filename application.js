@@ -266,7 +266,9 @@ $(function() {
 		
 		// MAN TRYCKER PÅ H
 		if(e.keyCode == 72){
-			toggleHighScores();
+			if(!questionAvailable) {
+				toggleHighScores();	
+			}
 		}
 		
 		// Spacebar. Ifall en video visas, pausa / spela den
