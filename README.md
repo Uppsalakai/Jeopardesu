@@ -28,10 +28,15 @@ H = Tar fram SCOREBOARD
 Todo:
 
 Gör så att efter 2 sekunder kan man ALLTID svara
-Gör så att när någon svarar rätt så visas highscoren och den "räknar upp"
 Börja spela det där ljudet när man trycker på "P"
-Visa spelarens namn när man svarar
+Lägg in ljudfrågor
+Ifall en ljudfråga svaras rätt på, spela upp ljudet
 Animera frågebubblor så de snurrar i 3D SWOSHAR upp som i riktig Jepoerdy
+Gör så att om man håller inne ALT och klickar på en bubbla så bara tas den bort
+
+
+
+Om man trycker på "O" så visa Dexter-giffen och spela en låt
 Spara game state med local storage
 Lägg till så att ESC kan stänga en bubbla och gå tillbaka
 En Battsu snurra (Vad va?)

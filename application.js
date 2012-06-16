@@ -225,13 +225,20 @@ $(function() {
 			// Right?
 			if(e.keyCode == 82) {
 				// Correct!							
-				$("#right").show();
+				//$("#right").show();
 				JP.players[playerThatIsAnswering-1].score += JP.currentQuestion.points;
-				setTimeout(removeOverlay,600);
+				removeOverlay();
 				// Reset the UI. Totally fucked up function: redo
 				
 				// If right, and video queston - start playing the video again
-				$(".videoOverlay video:visible")[0] ? $(".videoOverlay video:visible")[0].play() : reset();
+				//$(".videoOverlay video:visible")[0] ? $(".videoOverlay video:visible")[0].play() : reset();
+				if ($(".videoOverlay video:visible")[0]) {
+					$(".videoOverlay video:visible")[0].play();
+				} else {
+					reset();
+					// If not videoOverlay, show points and count up
+					showHighScoreAndAnimate(playerThatIsAnswering);
+				}
 				
 			} else {
 				// Wrong		
@@ -242,7 +249,7 @@ $(function() {
 				
 				//$("#wrong").show();
 				// Remove overlay after 600 ms
-				setTimeout(removeOverlay,600);
+				setTimeout(removeOverlay,600);	
 			}
 		}	
 		
@@ -377,6 +384,29 @@ $(function() {
 		if (questionAvailable) {
 			JP.answersAccepted = true;
 		}
+	}
+	
+	function showHighScoreAndAnimate(playerThatAnswered) {
+		// Calculate highscore
+	    for(var i = 0; i < 3; i++){
+	        var playerHighscore = JP.players[i].score == 0 ? "000" : JP.players[i].score;
+	        $("#highscore .p" + parseInt(i+1) + " span").html(playerHighscore);
+	    }
+	    
+		// Show the highscore board
+		$("#highscore").fadeIn('fast', function(){
+		
+			// Grow and shrink that players' points
+			$("#highscore .p" + playerThatAnswered + " span").animate({fontSize: 130.0}, 250, function(){
+				// Animate back
+				$(this).animate({fontSize: 120.0}, 250);
+			});
+
+		});
+			
+		
+		//$("#highscore .p" + playerThatAnswered + " span").fadeOut('fast');
+
 	}
 
 });

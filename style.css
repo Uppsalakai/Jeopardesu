@@ -48,24 +48,23 @@ video {
 
 #highscore div {
 	color: #00b7c5;
-		width: 280px;
-		height: 180px;
-		padding-top: 100px;
-		float: left;
-		text-align: center;
-		border-radius: 300px;
-		font-size: 120px;
-		text-transform: uppercase;
-		line-height: 70px;
+	width: 280px;
+	height: 180px;
+	padding-top: 100px;
+	float: left;
+	text-align: center;
+	border-radius: 300px;
+	font-size: 120px;
+	text-transform: uppercase;
+	line-height: 80px;
 	margin-top: 160px;
 	margin-right: 10px;
 	margin-bottom: 10px;
 	background-color: #fff;
 	position: relative;
 	left: 15%;
-	padding-bottom: 40px;
-	padding-top: 60px;
-	}
+	padding-bottom: 50px;
+	padding-top: 50px;
 }
 
 #player {
