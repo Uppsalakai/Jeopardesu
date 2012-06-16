@@ -184,9 +184,9 @@ $(function() {
 			// set playerThatIsAnswering to 1,2 or 3
 			// TODO: Change this to 0, 1 or 2 -everywhere-
 			if(e.keyCode < 60) { 
-				playerThatIsAnswering = e.keyCode - 48;	
+				playerThatIsAnswering = e.keyCode - 48;
 			} else {
-				playerThatIsAnswering = e.keyCode - 96;					
+				playerThatIsAnswering = e.keyCode - 96;	
 			}
 			
 			// If player has already answered, return false
@@ -204,6 +204,11 @@ $(function() {
 			
 			// Show AWESOME pic from answering player
 			$("#p" + playerThatIsAnswering + "pic").show();
+			
+			// Show name from the player that is answering
+			var playerName = $("#p" + playerThatIsAnswering + "Name").html();
+			$("#playerNameFromAnsweringPlayer").html(playerName);
+			$("#playerNameFromAnsweringPlayer").show();
 			
 			// Allow judgement, prevents more answers
 			playerIsAnswering = 1;
@@ -232,7 +237,10 @@ $(function() {
 				// Wrong		
 				JP.players[playerThatIsAnswering-1].score -= JP.currentQuestion.points;
 				
-				$("#wrong").show();
+				// Play wrong sound
+				$("#sBidup")[0].play();
+				
+				//$("#wrong").show();
 				// Remove overlay after 600 ms
 				setTimeout(removeOverlay,600);
 			}
@@ -286,6 +294,7 @@ $(function() {
 		$(".playerpic").hide();
 		$("#wrong").hide();
 		$("#right").hide();
+		$("#playerNameFromAnsweringPlayer").hide();
 		
 		// Were all players wrong?
 		if(JP.playersThatHaveAnswered.length >= JP.players.length) allPlayersWereWrong();
@@ -361,6 +370,12 @@ $(function() {
 			$(".videoOverlay video:visible").hide();
 			$(".videoOverlay").fadeOut('fast');
 			reset();
+		}
+	}
+	
+	function setOKToAnswer() {
+		if (questionAvailable) {
+			JP.answersAccepted = true;
 		}
 	}
 

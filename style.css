@@ -77,9 +77,12 @@ video {
 }
 
 p {
-	
 	margin: 0;
 	padding: 0;
+}
+
+.innerWrapper p {
+	padding: 20px 20;
 }
 
 html {
@@ -141,18 +144,14 @@ body {
 	position: absolute;
 }
 
-.bubble .wrapper {
-	padding: 90px 30px 0;
-}
-
 .points, .endline {
 	background: url(img/stroke.png) repeat-x 0 50%;
-	margin: 50px 80px 0;
+	margin: 50px 120px 0;
 }
 
 .endline {
 	height: 30px;
-	margin: 0 80px;
+	margin: 0 140px;
 }
 
 .points span {
@@ -172,8 +171,20 @@ body {
 	text-align: center;
 	font-size: 72px;
 	text-transform: uppercase;
+	/* Fixes for center */
+	display: table; 
+	position: static;
 }
 
+.bubble .wrapper {
+	display: table-cell; 
+	vertical-align: middle; 
+}
+
+.bubble .wrapper .innerWrapper {
+	position: relative;
+	top: -20px;	
+}
 
 .category {
 	width: 19%;
@@ -261,5 +272,21 @@ h1 {
 
 #finalQuestion {
 	
+	display: none;
+}
+
+#playerNameFromAnsweringPlayer {
+	color: #fff;
+	text-align: center;
+	font-size: 260px;
+	font-weight: bold;
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin-top: 200px;
+	width: 100%;
+	z-index: 9002;
+	text-transform: uppercase;
+	text-shadow: 0 3px 10px rgba(0,0,0,0.5);
 	display: none;
 }

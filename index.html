@@ -45,12 +45,13 @@
 	
 	<h2 id="wrong">FEL</h2>
 	<h2 id="right">RÄTT</h2>
+	<h2 id="playerNameFromAnsweringPlayer"></h2>
 	<audio id="sBidup" preload="auto" autobuffer><source src="sound/bidup.mp3" /></audio>
 	
 	<div id="highscore">
-		<div class="p1"><p style="font-size:40px;">Tantan</p><span>000</span></div>
-		<div class="p2"><p style="font-size:40px;">Fluff</p><span>000</span></div>
-		<div class="p3"><p style="font-size:40px;">Antila</p><span>000</span></div>
+		<div class="p1"><p style="font-size:40px;" id="p1Name">Tantan</p><span>000</span></div>
+		<div class="p2"><p style="font-size:40px;" id="p2Name">Fluff</p><span>000</span></div>
+		<div class="p3"><p style="font-size:40px;" id="p3Name">Antila</p><span>000</span></div>
 	</div>
 	
 	<!-- Categories -->
@@ -75,9 +76,11 @@
 	<div class="overlay">
 		<div class="bubble">
 			<div class="wrapper">
-				<div class="points"><span>xxx</span></div>
-				<p></p>
-				<div class="endline"></div>
+				<div class="innerWrapper">
+					<div class="points"><span>xxx</span></div>
+					<p></p>
+					<div class="endline"></div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -246,7 +249,7 @@
 					</div>
 					<div class="three">
 						<span>600</span>
-						<div class="q">Denna månad har UppCon arrangerats flest gånger</div>
+						<div class="q">Denna djurartx äter inte Mangakungen</div>
 					</div>
 					<div class="four">
 						<span>800</span>

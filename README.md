@@ -27,11 +27,13 @@ H = Tar fram SCOREBOARD
 
 Todo:
 
-Centrera frågor vertikalt i bubblor
-Animera frågebubblor så de snurrar i 3D SWOSHAR upp som i riktig Jepoerdy
-Lägg till så att ESC kan stänga en bubbla och gå tillbaka
-Spara game state med local storage
 Gör så att efter 2 sekunder kan man ALLTID svara
+Gör så att när någon svarar rätt så visas highscoren och den "räknar upp"
+Börja spela det där ljudet när man trycker på "P"
+Visa spelarens namn när man svarar
+Animera frågebubblor så de snurrar i 3D SWOSHAR upp som i riktig Jepoerdy
+Spara game state med local storage
+Lägg till så att ESC kan stänga en bubbla och gå tillbaka
 En Battsu snurra (Vad va?)
 Specialfråga: Satsa poäng!
 Finare fonter i Google Chrome
