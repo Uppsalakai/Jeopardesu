@@ -289,3 +289,18 @@ h1 {
 	text-shadow: 0 3px 10px rgba(0,0,0,0.5);
 	display: none;
 }
+
+#nameOverlay {
+	display: none;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: #00b7c5;
+	z-index: 10001;
+	line-height: 600px;
+	text-align: center;
+	font-size: 140px;
+	color: #fff;
+}

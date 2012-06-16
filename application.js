@@ -430,5 +430,24 @@ $(function() {
 		});
 			
 	}
+	
+	/* If Click on gifhscore bubble */
+	$("#highscore .p1").click(function(e){
+		$("#nameOverlay").html("TANTAN").fadeIn('fast');
+	});
+	
+	$("#highscore .p2").click(function(e){
+		$("#nameOverlay").html("FLUFF").fadeIn('fast');
+	});	
+	
+	$("#highscore .p3").click(function(e){
+		$("#nameOverlay").html("ANTILA").fadeIn('fast');
+	});
+	
+	$("#nameOverlay").click(function(e){
+		$(this).fadeOut('fast');
+	});
+
+	//#nameOverlay 
 
 });
