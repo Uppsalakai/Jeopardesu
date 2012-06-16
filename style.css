@@ -42,7 +42,7 @@ video {
 	top: 0;
 	left: 0;
 	background-color: #00b7c5;
-	
+	z-index: 10000;
 	display: none;
 }
 
