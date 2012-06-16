@@ -27,13 +27,12 @@ H = Tar fram SCOREBOARD
 
 Todo:
 
-En Battsu snurra (Vad va?)
 Centrera frågor vertikalt i bubblor
 Animera frågebubblor så de snurrar i 3D SWOSHAR upp som i riktig Jepoerdy
-Spara game state med local storage
 Lägg till så att ESC kan stänga en bubbla och gå tillbaka
-Gör så att man kan svara såfort en video börjar spelas
+Spara game state med local storage
 Gör så att efter 2 sekunder kan man ALLTID svara
+En Battsu snurra (Vad va?)
 Specialfråga: Satsa poäng!
 Finare fonter i Google Chrome
 Lägg in frågor som JSON-filer istället

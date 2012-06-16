@@ -70,11 +70,15 @@ $(function() {
 		// Play sound if sound bubble
 		if($(this).hasClass("sound")){
 			$(this).find("audio")[0].play();
+			// Set OK to answer!
+			JP.answersAccepted = true;
 		} else if ($(this).hasClass("video")) { // If not, play if it is a video
 			// Fade in background, and once that is finished, show and play the movie
 			$(".videoOverlay").fadeIn('fast', function(){
 				$(".videoOverlay video").eq(questionIndex).fadeIn('fast')[0].play();
 			});
+			// Set OK to answer! 
+			JP.answersAccepted = true;
 		}
 		
 		// Fade in overlay
@@ -82,10 +86,6 @@ $(function() {
 	});
 	
 	$("body").keyup(function(e){
-		if(e.keyCode == "13" && questionAvailable) {
-			// OK to answer!
-			JP.answersAccepted = true;
-		}
 	});
 	
 	// TODO: Remove this and set in intro function
@@ -116,10 +116,10 @@ $(function() {
 	    	}
 		}
 		
-		// TODO: Merge these two functions!
 		// Round intro!
 		// Change category on key right
-		if(e.keyCode == 39 && round == 1){
+		// Don't if a qurstion is showing
+		if(e.keyCode == 39 && round == 1 && !questionAvailable && !JP.answersAccepted){
 			$("#categories h1").fadeOut('fast', function(e){
 				currentCategoryHeader++;
 				if(currentCategoryHeader >=5) {
@@ -170,6 +170,11 @@ $(function() {
 			showLastQuestion();
 		}
 		
+		// Set OK to answer!
+		if(e.keyCode == "13" && questionAvailable) {
+			// OK to answer!
+			JP.answersAccepted = true;
+		}
 		
 		// A player tries to answer
 		if((e.keyCode >= 97 && e.keyCode <= 99) || (e.keyCode >= 49 && e.keyCode <= 51)){
