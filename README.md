@@ -27,11 +27,11 @@ H = Tar fram SCOREBOARD
 
 Todo:
 
-Gör så att efter 2 sekunder kan man ALLTID svara
 Börja spela det där ljudet när man trycker på "P"
 Lägg in ljudfrågor
 Ifall en ljudfråga svaras rätt på, spela upp ljudet
 Animera frågebubblor så de snurrar i 3D SWOSHAR upp som i riktig Jepoerdy
+Gör så att efter 2 sekunder kan man ALLTID svara
 Gör så att om man håller inne ALT och klickar på en bubbla så bara tas den bort
 
 
