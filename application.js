@@ -215,7 +215,7 @@ $(function() {
 		
 		// Judgement - "W" or "R" key is pressed
 		if(e.keyCode == "82" || e.keyCode == "87"){
-			if(!playerIsAnswering && e.keyCode == "87"){
+			if(!playerIsAnswering && e.keyCode == "87" && questionAvailable){
 				$("#sBidup")[0].play();
 				removeOverlay();
 				reset();
